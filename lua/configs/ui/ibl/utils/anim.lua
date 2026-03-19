@@ -74,14 +74,27 @@ local function get_current_scope()
     end
     check = check:parent()
   end
-
   while node do
     if vim.tbl_contains(BLOCK_NODES, node:type()) then
       local sr, _, er, _ = node:range()
       if er - sr >= 2 then
-        local line = vim.api.nvim_buf_get_lines(0, sr, sr + 1, false)[1] or ""
-        local indent = string.find(line, "%S")
-        local col = indent and (indent - 1) or 0
+        local shiftwidth = vim.bo.shiftwidth > 0 and vim.bo.shiftwidth or vim.bo.tabstop
+        local inner_indent = nil
+
+        for i = sr + 1, er - 1 do
+          local line = vim.api.nvim_buf_get_lines(0, i, i + 1, false)[1] or ""
+          if line:match "%S" then
+            inner_indent = vim.fn.indent(i + 1)
+            break
+          end
+        end
+
+        if not inner_indent then
+          inner_indent = vim.fn.indent(sr + 1) + shiftwidth
+        end
+
+        local col = math.max(0, inner_indent - shiftwidth)
+
         return { start = sr, finish = er, col = col }
       end
     end
