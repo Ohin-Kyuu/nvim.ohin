@@ -112,7 +112,6 @@ return {
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "blankline")
       require("ibl").setup(opts)
-      require("configs.ui.ibl.utils.anim").setup()
     end,
   },
 
