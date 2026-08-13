@@ -124,4 +124,14 @@ return {
       require("configs.ui.ufo").setup()
     end,
   },
+
+  -- image.nvim
+  {
+    "3rd/image.nvim",
+    build = false,
+    lazy = false,
+    config = function()
+      require "configs.ui.image"
+    end,
+  },
 }

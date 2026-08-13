@@ -16,3 +16,6 @@ map("n", "<Leader>un", function()
   require("notify").dismiss { silent = true, pending = true }
 end, { desc = "Dismiss ALL Notifications" })
 
+-- pyright
+map("n", "<leader>ph", "<cmd>PyrightHost<cr>")
+map("n", "<leader>pd", "<cmd>PyrightDocker<cr>")
