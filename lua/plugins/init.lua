@@ -1,5 +1,3 @@
-local overrides = require "configs.overrides"
-
 return {
 
   -- Notify
@@ -7,40 +5,31 @@ return {
     "rcarriga/nvim-notify",
     lazy = false,
     config = function()
-      require "configs.ui.notify"
+      require "ui.notify"
     end,
   },
 
-  -- NvimTree
-  {
-    "nvim-tree/nvim-tree.lua",
-    version = false,
-    lazy = false,
-    opts = overrides.nvimtree,
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons", lazy = true },
-    },
-  },
+  -- NvimTree is provided by NvChad; custom overrides are applied via ui.nvimtree.
 
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    opts = require "configs.treesitter",
   },
 
   -- LSP
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "configs.code.lsp"
+      require "lsp"
     end,
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = overrides.lspconfig,
+    opts = require "configs.lsp",
     dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
+      { "mason-org/mason.nvim", opts = require "configs.mason" },
       "neovim/nvim-lspconfig",
     },
   },
@@ -50,7 +39,7 @@ return {
     "mfussenegger/nvim-dap",
     lazy = false,
     config = function()
-      require "configs.code.dap"
+      require "tools.dap"
     end,
   },
 
@@ -69,9 +58,9 @@ return {
   {
     "jay-babu/mason-nvim-dap.nvim",
     event = "VeryLazy",
-    opts = overrides.dapconfig,
+    opts = require "configs.dap",
     dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
+      { "mason-org/mason.nvim", opts = require "configs.mason" },
       "mfussenegger/nvim-dap",
     },
   },
@@ -81,34 +70,34 @@ return {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
     config = function()
-      require "configs.code.conform"
+      require "tools.conform"
     end,
   },
 
   -- cmp
   {
     "hrsh7th/nvim-cmp",
-    opts = require "configs.code.cmp",
+    opts = require "completion",
   },
 
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    opts = require "configs.ui.telescope",
+    opts = require "ui.telescope",
   },
 
   -- Which-Key
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = require "configs.ui.whichkey",
+    opts = require "ui.whichkey",
   },
 
   -- Indent-Blankline
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
-    opts = require "configs.ui.ibl",
+    opts = require "ui.ibl",
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "blankline")
       require("ibl").setup(opts)
@@ -121,7 +110,7 @@ return {
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     config = function()
-      require("configs.ui.ufo").setup()
+      require("ui.ufo").setup()
     end,
   },
 
@@ -131,7 +120,7 @@ return {
     build = false,
     lazy = false,
     config = function()
-      require "configs.ui.image"
+      require "ui.image"
     end,
   },
 }
