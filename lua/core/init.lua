@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 
 -- NvChad base
 require "nvchad.options"
-require "nvchad.autocmds"
 require "nvchad.mappings"
 
 -- Custom core

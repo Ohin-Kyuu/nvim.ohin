@@ -9,8 +9,6 @@ return {
     end,
   },
 
-  -- NvimTree is provided by NvChad; custom overrides are applied via ui.nvimtree.
-
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
