@@ -18,5 +18,4 @@ vim.schedule(function()
   -- treesitter is lazy by event, no explicit load needed
   require "lsp"
   require "tools.dap"
-  require "tools.conform"
 end)
