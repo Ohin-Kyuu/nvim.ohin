@@ -9,6 +9,19 @@ return {
     end,
   },
 
+  -- NvimTree
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = false,
+    lazy = false,
+    opts = function()
+      return require "ui.nvimtree"
+    end,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", lazy = true },
+    },
+  },
+
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
