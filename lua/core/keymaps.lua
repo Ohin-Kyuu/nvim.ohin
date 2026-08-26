@@ -14,6 +14,7 @@ map("n", "<Leader>un", function()
   require("notify").dismiss { silent = true, pending = true }
 end, { desc = "Dismiss ALL Notifications" })
 
--- pyright
-map("n", "<leader>ph", "<cmd>PyrightHost<cr>")
-map("n", "<leader>pd", "<cmd>PyrightDocker<cr>")
+-- Toggle Transparency
+map("n", "<leader>tt", function()
+  require("base46").toggle_transparency()
+end, { desc = "Toggle transparency" })

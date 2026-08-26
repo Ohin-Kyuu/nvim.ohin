@@ -10,6 +10,7 @@ local M = {}
 M.base46 = {
   theme = "decay",
   theme_toggle = { "decay", "tokyonight" },
+  transparency = true,
 
   hl_override = {
     -- 	Comment = { italic = true },
