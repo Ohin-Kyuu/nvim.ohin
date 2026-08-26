@@ -41,7 +41,8 @@ M.ui = {
   }, -- borderless / bordered
 
   tabufline = {
-    lazyload = false,
+    lazyload = true,
+    treeOffsetFt = "NvimTree",
   },
 
   -- term
